@@ -42,11 +42,11 @@ Dependencies are the following R packages: ```splines```, ```Rcpp```, ```RcppAra
 
 - ```inittau``` : between 0 and 1. initial value for $\tau$. Default value is 0.
 
-- ```nu``` : $\nu$, the geometric hyperparameter for $J$. Bigger $J$ leads to a less informative prior.
+- ```nu``` : $\nu \in (0,1]$, the geometric hyperparameter for $J$. Bigger $\nu$ leads to a less informative prior.
 
 - ```initknot``` : initial integer value for interior knots used. Default is 30, which means $J = 34$.
 
-- ```knotmax``` : maximal interior knots to be considered. Has to be smaller than or equal to $n - 4$. Default value is 90.
+- ```knotmax``` : maximal interior knots to be considered. Has to be set a proper value (less than $n - 4$) for the full column rank of the basis matrix. The default value is 90.
 
 - ```saveparams``` : boolean, whether to save the MCMC samples of $\sigma^2$, $J$, $\lambda$, $\tau$. Default is FALSE.
 
