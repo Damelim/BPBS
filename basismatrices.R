@@ -7,7 +7,7 @@ get_B_matrix = function(x, x_pred, degree = 3, num_interior_knots){
   knots = seq(0, 1, length = num_interior_knots + 2)
   knots = knots[-1] ; knots = knots[-length(knots)]
   
-  B = bs(x, knots = knots, degree = degree, intercept= T)
+  B = bs(x, knots = knots, degree = degree, intercept= T, Boundary.knots = c(0,1))
   
   colmeanvec = colMeans(B)
   n = nrow(B) ; p = ncol(B)
@@ -17,7 +17,7 @@ get_B_matrix = function(x, x_pred, degree = 3, num_interior_knots){
   
   if(is.null(x_pred) == FALSE){
     n_pred = length(x_pred)
-    B_pred = bs(x_pred, knots = knots, degree = degree, intercept= T)
+    B_pred = bs(x_pred, knots = knots, degree = degree, intercept= T, Boundary.knots = c(0,1))
     colmeanmat = matrix(rep(colmeanvec, n_pred), n_pred, p, byrow = T)
     B_pred = B_pred - colmeanmat
     B_pred[,1] = 1
