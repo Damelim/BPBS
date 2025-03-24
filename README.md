@@ -6,18 +6,21 @@ Code for "Penalty-Induced Basis Exploration for Bayesian Splines".
 
 ```BPBS_1D.R``` : main code for the proposed method (univariate)
 
-```BPBS_TP.R``` : main code for the proposed method (tensor product)
+```BPBS_2D.R``` : main code for the proposed method (bivariate tensor product)
 
 ```MatMultInv.cpp``` : Rcpp code for fast matrix multiplication and inversion via RcppArmadillo and RcppEigen.
 
 ```basismatrices.R``` : R code for creating basis and penalty matrix.
 
-```execution_example.R``` : an execution example with simulated dataset.
+```execution_example_1D.R``` : an execution example with simulated dataset for univariate.
+
+```execution_example_2D.R``` : an execution example with simulated dataset for bivariate.
+
 
 
 ## Dependencies 
 
-Dependencies are the following R packages: ```splines```, ```Rcpp```, ```RcppAradillo```, ```MCMCpack```, ```mvtnorm```, ```invgamma```.
+Dependencies are the following R packages: ```splines```, ```Rcpp```, ```RcppAradillo```, ```MCMCpack```, ```mvtnorm```, ```mgcv```, ```mvnfast```.
 
 
 ## Arguments for BPBS_1D
@@ -80,4 +83,11 @@ Dependencies are the following R packages: ```splines```, ```Rcpp```, ```RcppAra
 - ```lambda``` : only returned when saveparams is TRUE. MCMC samples of $\lambda$ getting rid of burn-in.
 
 - ```tau``` : only returned when saveparams is TRUE. MCMC samples of $\tau$ getting rid of burn-in.
+
+
+## Inputs and Returns for BPBS_2D
+
+Inputs are identical as the univariate case, except that ```x``` is replaced by ```xmat```, a n by 2 matrix.
+
+BPBS_2D returns ```J1``` and ```J2``` samples if saveparams is set as TRUE.
 
