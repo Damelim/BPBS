@@ -87,7 +87,7 @@ Dependencies are the following R packages: ```splines```, ```Rcpp```, ```RcppAra
 
 ## Inputs and Returns for BPBS_2D
 
-Inputs are identical as the univariate case, except that ```x``` is replaced by ```xmat```, a n by 2 matrix.
+Inputs are identical as the univariate case, except that ```x``` is replaced by ```xmat```, a n by 2 matrix containing the columnwise stacked predictors and ```x_pred``` is a matrix with n_pred by 2 matrix.
 
 BPBS_2D returns ```J1``` and ```J2``` samples if saveparams is set as TRUE.
 
