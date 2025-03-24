@@ -1,9 +1,17 @@
 library(splines)
 
-get_B_matrix = function(x, x_pred, degree = 3, num_interior_knots){ 
+get_B_matrix = function(x, x_pred, degree = 3, num_interior_knots){
+  #span(B1, B2, B3,..., Bm)
+  knots = seq(0, 1, length = num_interior_knots + 2)
+  knots = knots[-1] ; knots = knots[-length(knots)]
+  B = splines::bs(x, knots = knots, degree = degree, intercept= T, Boundary.knots = c(0,1))
+  B_pred = splines::bs(x_pred, knots = knots, degree = degree, intercept= T, Boundary.knots = c(0,1))
+  return(list("B" = B,  "B_pred" = B_pred))
+}
+
+get_B_matrix_centered = function(x, x_pred, degree = 3, num_interior_knots){ 
   
   # span(1, B_2 - C_2, ..., B_m - C_m)
-  
   knots = seq(0, 1, length = num_interior_knots + 2)
   knots = knots[-1] ; knots = knots[-length(knots)]
   
@@ -24,12 +32,15 @@ get_B_matrix = function(x, x_pred, degree = 3, num_interior_knots){
   }else{
     B_pred = NULL
   }
-  
   return(list("B" = B,  "B_pred" = B_pred))
-  
 }
 
-get_P_matrix = function(n_col, deriv){  # P = D^T D and then, fill the first row and column as 0. 
+get_P_matrix = function(n_col, deriv = 2){
+  D = as.matrix(diff(diag(1, n_col), diff = deriv))
+  P = crossprod(D,D) #eigenMapMatMult(t(D), D)
+  return(P)
+}
+get_P_matrix_centered = function(n_col, deriv){  # P = D^T D and then, fill the first row and column as 0. 
   D = as.matrix(diff(diag(1, n_col), diff = deriv)) 
   P = crossprod(D) #eigenMapMatMult(t(D), D)
   P[1,1:ncol(P)] = 0 
