@@ -1,10 +1,12 @@
 # BPBS
 
-Code for "Synergizing Roughness Penalization and Basis Selection in Bayesian Spline Regression".
+Code for "Penalty-Induced Basis Exploration for Bayesian Splines".
 
 ## Files
 
-```BPBS.R``` : main code for the proposed method.
+```BPBS_1D.R``` : main code for the proposed method (univariate)
+
+```BPBS_TP.R``` : main code for the proposed method (tensor product)
 
 ```MatMultInv.cpp``` : Rcpp code for fast matrix multiplication and inversion via RcppArmadillo and RcppEigen.
 
@@ -18,7 +20,7 @@ Code for "Synergizing Roughness Penalization and Basis Selection in Bayesian Spl
 Dependencies are the following R packages: ```splines```, ```Rcpp```, ```RcppAradillo```, ```MCMCpack```, ```mvtnorm```, ```invgamma```.
 
 
-## Arguments
+## Arguments for BPBS_1D
 
 ```BPBS``` has the following arguments.
 
@@ -44,7 +46,7 @@ Dependencies are the following R packages: ```splines```, ```Rcpp```, ```RcppAra
 
 - ```nu``` : $\nu \in (0,1]$, the geometric hyperparameter for $J$. Bigger $\nu$ leads to a less informative prior.
 
-- ```initknot``` : initial integer value for interior knots used. Default is 30, which means $J = 34$.
+- ```initknot``` : initial integer value for interior knots used. Default is 0, which means $J = 4$.
 
 - ```knotmax``` : maximal interior knots to be considered. Has to be set a proper value (less than $n - 4$) for the full column rank of the basis matrix. The default value is 90.
 
@@ -55,7 +57,7 @@ Dependencies are the following R packages: ```splines```, ```Rcpp```, ```RcppAra
 - ```seed``` : integer, random seed for random number generation.
 
 
-## Returns
+## Returns for BPBS_1D
 
 ```BPBS``` returns a list of the following terms.
 
