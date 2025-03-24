@@ -6,7 +6,7 @@ Code for "Penalty-Induced Basis Exploration for Bayesian Splines".
 
 ```BPBS_1D.R``` : main code for the proposed method (univariate)
 
-```BPBS_2D.R``` : main code for the proposed method (bivariate tensor product)
+```BPBS_TP.R``` : main code for the proposed method (multivariate tensor product)
 
 ```MatMultInv.cpp``` : Rcpp code for fast matrix multiplication and inversion via RcppArmadillo and RcppEigen.
 
@@ -14,7 +14,7 @@ Code for "Penalty-Induced Basis Exploration for Bayesian Splines".
 
 ```execution_example_1D.R``` : an execution example with simulated dataset for univariate.
 
-```execution_example_2D.R``` : an execution example with simulated dataset for bivariate.
+```execution_example_TP.R``` : an execution example with simulated dataset for multivariate (2D in this case)
 
 
 
@@ -85,9 +85,9 @@ Dependencies are the following R packages: ```splines```, ```Rcpp```, ```RcppAra
 - ```tau``` : only returned when saveparams is TRUE. MCMC samples of $\tau$ getting rid of burn-in.
 
 
-## Inputs and Returns for BPBS_2D
+## Inputs and Returns for BPBS_TP
 
-Inputs are identical as the univariate case, except that ```x``` is replaced by ```xmat```, a n by 2 matrix containing the columnwise stacked predictors and ```x_pred``` is a matrix with n_pred by 2 matrix.
+Inputs are identical as the univariate case, except that ```x``` is replaced by ```xmat```, a matrix of size n $\times$ (number of function components), containing the columnwise stacked predictors and ```x_pred``` is a matrix with n_pred $\times$ (number of function components).
 
-BPBS_2D returns ```J1``` and ```J2``` samples if saveparams is set as TRUE.
+BPBS_2D returns ```Jvec```, a matrix of (n_mcmc_sample - nburnin) $\times$ (number function components), if saveparams is set as TRUE.
 
