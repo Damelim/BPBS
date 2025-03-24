@@ -89,5 +89,5 @@ Dependencies are the following R packages: ```splines```, ```Rcpp```, ```RcppAra
 
 Inputs are identical as the univariate case, except that ```x``` is replaced by ```xmat```, a matrix of size n $\times$ (number of function components), containing the columnwise stacked predictors and ```x_pred``` is a matrix with n_pred $\times$ (number of function components).
 
-BPBS_2D returns ```Jvec```, a matrix of (n_mcmc_sample - nburnin) $\times$ (number function components), if saveparams is set as TRUE.
+BPBS_TP returns ```Jvec```, a matrix of (n_mcmc_sample - nburnin) $\times$ (number function components), if saveparams is set as TRUE.
 
