@@ -33,9 +33,9 @@ The current implementation samples `lambda` directly from its generalized invers
 
 The current prior is
 
-$$
+$
 \pi(J) \propto \exp\left\{-\nu\frac{J}{L}\log\left(\frac{J}{L}\right)\right\},
-$$
+$
 
 where `L = 4` for the univariate cubic B-spline model. For a `D`-dimensional tensor-product model, `J` is the full tensor-product basis dimension and `L = 4^D`. The default is `nu = 1/2` in both `BPBS_1D` and `BPBS_TP`; `nu` is not exponentiated by `D`. Larger positive values of `nu` penalize dimensions above the base model more strongly.
 
