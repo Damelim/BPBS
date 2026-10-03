@@ -14,7 +14,9 @@ Code for "Penalty-Induced Basis Exploration for Bayesian Splines".
 
 `execution_example_1D.R` : an execution example with simulated data for the univariate method.
 
-`execution_example_TP.R` : an execution example with simulated data for the multivariate method (2D in this example).
+`execution_example_TP_2D.R` : a 2D tensor-product example using `BPBS_TP`.
+
+`execution_example_TP_3D.R` : a 3D tensor-product example using the same `BPBS_TP` function.
 
 ## Dependencies
 
@@ -89,7 +91,7 @@ The model-dimension Metropolis--Hastings step uses a normalized, truncated discr
 
 ## Inputs and returns for BPBS_TP
 
-Inputs are analogous to the univariate case, except that `x` is replaced by `xmat`, an `n` by `D` predictor matrix, and `x_pred` is an `n_pred` by `D` prediction matrix.
+Inputs are analogous to the univariate case, except that `x` is replaced by `xmat`, an `n` by `D` predictor matrix, and `x_pred` is an `n_pred` by `D` prediction matrix. The same `BPBS_TP` implementation handles both bivariate (`D = 2`) and trivariate (`D = 3`) models; no separate trivariate implementation is needed.
 
 For tensor-product models, the default upper bound is
 
@@ -98,3 +100,5 @@ max(0, min(50, floor(nrow(xmat)^(1/ncol(xmat))) - 4))
 ```
 
 which generalizes the previous square-root rule to `D` dimensions. If `saveparams = TRUE`, `BPBS_TP` returns `Jvec`, an `(n_mcmc_sample - nburnin)` by `D` matrix of componentwise basis dimensions, in addition to `sigma2`, `lambda`, and `tau`.
+
+Automatic `plot_fit` output is provided for `D = 2`. For `D = 3`, predictions and credible intervals are returned normally, and `execution_example_TP_3D.R` illustrates how to plot a two-dimensional slice at a fixed value of the third predictor.
